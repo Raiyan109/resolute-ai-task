@@ -1,0 +1,56 @@
+[
+    {
+        "_id": 1,
+        "name": "Dashboard",
+        "price": 10000,
+        "img": "https://i.ibb.co/vcxHtzx/pexels-pixabay-533562.jpg",
+        "description": "The car dashboard is one part of the car interior that is usually placed at the car's front.",
+        "minimum order quantity": 100,
+        "available quantity": 200
+    },
+    {
+        "_id": 2,
+        "name": "Baby car seat",
+        "price": 10700,
+        "img": "https://i.ibb.co/PFg7cPX/pexels-erik-mclean-7708639.jpg",
+        "description": "though they can opt to do so sooner if the seat is rated safe for their child's height and weight.",
+        "minimum order quantity": 100,
+        "available quantity": 300
+    },
+    {
+        "_id": 3,
+        "name": "Antenna",
+        "price": 20000,
+        "img": "https://i.ibb.co/sQb2sp6/pexels-paul-volkmer-2976183.jpg",
+        "description": "Car antennas are considered a significant automotive accessory as these are able to provide an uninterrupted transmission of wireless signals and radio waves in your vehicle.",
+        "minimum order quantity": 100,
+        "available quantity": 400
+    },
+    {
+        "_id": 4,
+        "name": "Roof",
+        "price": 4000,
+        "img": "https://i.ibb.co/vYG5jCK/pexels-jem-sanchez-1784725.jpg",
+        "description": " A sunroof is a panel on the roof of a car that either slides back or can be taken out to allow light, air or both to come into a vehicle.",
+        "minimum order quantity": 100,
+        "available quantity": 500
+    },
+    {
+        "_id": 5,
+        "name": "Car Exhaust",
+        "price": 22500,
+        "img": "https://i.ibb.co/3FHM6TD/pexels-victoria-ouarets-5288735.jpg",
+        "description": "The exhaust system in your car consists of piping and components that guide the gasses produced by an internal combustion process in the engine.",
+        "minimum order quantity": 100,
+        "available quantity": 600
+    },
+    {
+        "_id": 1,
+        "name": "Shock absorber",
+        "price": 8000,
+        "img": "https://i.ibb.co/zQ1SSd4/mustachescactus-4y-XUyrk-Rqa-M-unsplash.jpg",
+        "description": "In naval parlance, the sail or fin (also known as a fair water) of a submarine is the tower-like structure found on the dorsal (topside) surface of submarines.",
+        "minimum order quantity": 100,
+        "available quantity": 700
+    }
+]

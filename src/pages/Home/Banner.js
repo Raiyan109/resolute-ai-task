@@ -1,13 +1,15 @@
 import React from 'react';
+import banner from '../../assets/images/banner.jpg'
 
 const Banner = () => {
     return (
         <div class="hero min-h-screen bg-base-200">
             <div class="hero-content flex-col lg:flex-row">
-                <img src="https://api.lorem.space/image/movie?w=260&h=400" class="max-w-sm rounded-lg shadow-2xl" />
+                <img src={banner} class="max-w-sm rounded-lg shadow-2xl" />
                 <div>
-                    <h1 class="text-5xl font-bold">Box Office News!</h1>
-                    <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <h1 class="text-5xl font-bold">WE ARE EXPERTS IN
+                        AUTOMOTIVE PRODUCTS</h1>
+                    <p class="py-6">We are committed to supplying our customers with robust automotive components and reliable services through our international commercial and production network</p>
                     <button class="btn btn-primary">Get Started</button>
                 </div>
             </div>
