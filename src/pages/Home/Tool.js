@@ -1,10 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Tool = ({ tool }) => {
-    const { name, price, img, description, minimumQuantity, availableQuantity } = tool
+    const { name, price, img, description, minimumQuantity, availableQuantity, _id } = tool
+    const navigate = useNavigate()
+
+    const goToPurchase = () => {
+        navigate(`/tools/${_id}`)
+    }
+
+
     return (
         <div>
-            <a class="relative block bg-black group" href="">
+            <div class="relative block bg-black group" >
                 <img
                     class="absolute inset-0 object-cover w-full h-full transition-opacity opacity-75  group-hover:opacity-50"
                     src={img}
@@ -24,10 +32,11 @@ const Tool = ({ tool }) => {
                             <p class="text-sm text-white">
                                 {description}
                             </p>
+                            <button onClick={() => goToPurchase(tool)} class="btn glass">Add to Cart</button>
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
     );
 };

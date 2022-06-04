@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => {
     return (
-        <div class="navbar bg-orange-200">
+        <div class="navbar bg-stone-800">
             <div class="navbar-start">
                 <div class="dropdown">
                     <label tabindex="0" class="btn btn-ghost lg:hidden">
@@ -23,7 +23,7 @@ const Header = () => {
                         <li><a>Item 3</a></li>
                     </ul>
                 </div>
-                <a class="btn btn-ghost normal-case text-xl">Rai Enterprize</a>
+                <a class="btn btn-ghost normal-case text-xl text-white">Rai Enterprize</a>
             </div>
             <div class="navbar-center  hidden lg:flex">
                 <ul class="menu menu-horizontal bg-orange-200 p-0">
@@ -42,7 +42,7 @@ const Header = () => {
                 </ul>
             </div>
             <div class="navbar-end">
-                <a class="btn btn-error">Get started</a>
+                <a class="btn bg-yellow-500 text-black">Get started</a>
             </div>
         </div>
     );
