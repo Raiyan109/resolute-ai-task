@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Cart from './Cart';
 
 const Purchase = ({ tool }) => {
 
     const { id } = useParams()
     const [purchase, setPurchase] = useState([])
+    const [cart, setCart] = useState([])
 
     useEffect(() => {
         const url = `http://localhost:5000/tools/${id}`
@@ -12,8 +14,16 @@ const Purchase = ({ tool }) => {
             .then(res => res.json())
             .then(data => setPurchase(data))
     }, [])
+
+    const handleAddToCart = (tool) => {
+        console.log(tool);
+        const newCart = [...cart, tool]
+        setCart(newCart)
+    }
+
+
     return (
-        <div>
+        <div className='flex'>
             <div
                 className="block w-screen max-w-sm p-10 border sm:px-12 bg-stone-100 border-stone-600"
                 aria-modal="true"
@@ -89,10 +99,11 @@ const Purchase = ({ tool }) => {
 
                 <div className="space-y-4 text-center">
                     <a
+                        onClick={() => handleAddToCart()}
                         className="block p-3 text-sm border rounded-lg border-stone-600 text-stone-500 hover:ring-1 hover:ring-stone-400 hover:text-stone-600"
-                        href="/"
+                        href="#"
                     >
-                        View my cart (2)
+                        Add to cart
                     </a>
 
                     <form action="/cart" method="post">
@@ -111,6 +122,10 @@ const Purchase = ({ tool }) => {
                         Continue shopping
                     </a>
                 </div>
+            </div>
+            <div className=''>
+                <Cart cart={cart}></Cart>
+
             </div>
         </div>
     );
