@@ -16,7 +16,7 @@ const Purchase = ({ tool }) => {
     }, [])
 
     const handleAddToCart = (tool) => {
-        console.log(tool);
+        // console.log(tool);
         const newCart = [...cart, tool]
         setCart(newCart)
     }

@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Tool = ({ tool }) => {
-
 
     const { name, price, img, description, minimumQuantity, availableQuantity, _id } = tool
     const navigate = useNavigate()
@@ -11,8 +10,7 @@ const Tool = ({ tool }) => {
         navigate(`/tools/${_id}`)
     }
 
-
-
+    const ToolContext = createContext(tool)
 
     return (
         <div>
