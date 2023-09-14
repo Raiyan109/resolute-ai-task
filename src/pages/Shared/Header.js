@@ -37,7 +37,7 @@ const Header = () => {
             </div>
             <div class="navbar-center  hidden lg:flex">
                 <ul class="menu menu-horizontal bg-orange-200 p-0">
-                    {user.displayName && <li> <Link to='/login' class="btn bg-yellow-500 text-black">Add Task</Link></li>}
+                    {user.displayName && <li> <Link to='/addTask' class="btn bg-yellow-500 text-black">Add Task</Link></li>}
                     {/* <li tabindex="0">
                         <a>
                             Parent
@@ -52,7 +52,7 @@ const Header = () => {
                 </ul>
             </div>
             <div class="navbar-end">
-                {user.displayName ? <button onClick={handleLogout} className='btn bg-yellow-500 text-black'>Logout</button>
+                {user ? <button onClick={handleLogout} className='btn bg-yellow-500 text-black'>Logout</button>
                     :
                     <>
                         <Link to='/signup' class="btn bg-yellow-500 text-black">Sign up</Link>

@@ -1,26 +1,47 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import React, { useState } from 'react';
-import auth from '../../firebase.init';
+import React, { useEffect, useState } from 'react';
+import auth, { db } from '../../firebase.init';
 import { useNavigate } from 'react-router-dom';
+import { addDoc, collection } from 'firebase/firestore';
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+
+        if (token) {
+            navigate('/')
+        }
+    }, [])
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        setLoading(true)
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
+                console.log(userCredential._tokenResponse.idToken);
+                localStorage.setItem('token', userCredential._tokenResponse.idToken)
                 navigate('/')
             })
             .catch((error) => {
                 console.log(error);
             });
+        setLoading(false)
+        // try {
+        //     const docRef = await addDoc(collection(db, "users"), {
+
+        //         email: email
+        //     });
+
+        //     console.log("Document written with ID: ", docRef.id);
+        // } catch (e) {
+        //     console.error("Error adding document: ", e);
+        // }
     }
     return (
         <div>
@@ -48,7 +69,9 @@ const Login = () => {
                                             <label for="password" class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
                                         </div>
                                         <div class="relative">
-                                            <button class="bg-blue-500 text-white rounded-md px-2 py-1">Submit</button>
+                                            <button class="bg-blue-500 text-white rounded-md px-2 py-1">
+                                                {loading ? 'Logging in' : 'Login'}
+                                            </button>
                                         </div>
 
                                     </form>

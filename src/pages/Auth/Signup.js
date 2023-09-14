@@ -1,13 +1,26 @@
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import React, { useState } from 'react';
-import auth from '../../firebase.init';
+import React, { useEffect, useState } from 'react';
+import auth, { db } from '../../firebase.init';
 import { useNavigate } from 'react-router-dom';
+import { addDoc, collection } from 'firebase/firestore';
+import { useAuth } from '../../context/AuthProvider';
 
 const Signup = () => {
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [name, setName] = useState('')
+    const { user } = useAuth()
+    const [userUid, setUserUid] = useState('')
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+
+        if (token) {
+            navigate('/')
+        }
+    }, [])
+
 
 
     const handleSubmit = async (e) => {
@@ -15,24 +28,33 @@ const Signup = () => {
 
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                navigate('/')
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                }).then(() => {
+                    navigate('/')
+                }).catch((error) => {
+                    console.log(error);
+                });
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // ..
+                console.log(error);
+            })
+
+        try {
+            const docRef = await addDoc(collection(db, "users"), {
+                name: name,
+                email: email,
+                uid: 22343434
             });
 
-        await updateProfile(auth.currentUser, {
-            displayName: name
-        }).then(() => {
-            console.log('User name updated');
-        }).catch((error) => {
-            console.log(error);
-        });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+
+
     }
+
     return (
         <div>
             <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">

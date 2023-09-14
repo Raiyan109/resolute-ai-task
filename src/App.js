@@ -7,6 +7,7 @@ import Purchase from './pages/Home/Purchase';
 import Signup from './pages/Auth/Signup';
 import Login from './pages/Auth/Login';
 import AuthProvider from './context/AuthProvider';
+import AddTask from './pages/Home/AddTask';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/' element={<Home></Home>}></Route>
           <Route path='/signup' element={<Signup />}></Route>
           <Route path='/login' element={<Login />}></Route>
+          <Route path='/addTask' element={<AddTask />}></Route>
           <Route path='/tools/:id' element={<Purchase />}></Route>
         </Routes>
       </AuthProvider>

@@ -1,6 +1,7 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 import auth from "../firebase.init";
+import { error } from "daisyui/src/colors";
 
 export const AuthContext = createContext()
 
@@ -8,14 +9,17 @@ export const useAuth = () => {
     return useContext(AuthContext)
 }
 
-
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState([])
+    const [user, setUser] = useState(null)
 
-
-    const logout = async () => {
-        await signOut(auth)
-
+    const logout = () => {
+        signOut(auth)
+            .then(() => {
+                localStorage.removeItem('token')
+            })
+            .catch((error) => {
+                console.log(error.message);
+            })
     }
 
     useEffect(() => {
@@ -23,10 +27,8 @@ const AuthProvider = ({ children }) => {
             if (user) {
                 setUser(user)
             } else {
-
             }
         });
-
         return unsubscribe
     }, [])
 
