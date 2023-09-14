@@ -9,9 +9,10 @@ const Signup = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { user } = useAuth()
-    const [userUid, setUserUid] = useState('')
+
     const navigate = useNavigate()
+
+    const user = auth.currentUser
 
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -44,7 +45,7 @@ const Signup = () => {
             const docRef = await addDoc(collection(db, "users"), {
                 name: name,
                 email: email,
-                uid: 22343434
+                // uid: user.uid
             });
 
             console.log("Document written with ID: ", docRef.id);

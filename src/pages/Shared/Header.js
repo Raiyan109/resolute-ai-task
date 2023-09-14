@@ -33,11 +33,11 @@ const Header = () => {
                     </ul>
                 </div>
                 <Link to='/' class="btn btn-ghost normal-case text-xl text-white">Task Manager</Link>
-                <h1 className='text-white'>Hello, {user.displayName}</h1>
+                <h1 className='text-white'>Hello, {user && user.displayName}</h1>
             </div>
             <div class="navbar-center  hidden lg:flex">
                 <ul class="menu menu-horizontal bg-orange-200 p-0">
-                    {user.displayName && <li> <Link to='/addTask' class="btn bg-yellow-500 text-black">Add Task</Link></li>}
+                    {user && <li> <Link to='/addTask' class="btn bg-yellow-500 text-black">Add Task</Link></li>}
                     {/* <li tabindex="0">
                         <a>
                             Parent

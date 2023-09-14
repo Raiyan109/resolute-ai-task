@@ -24,7 +24,6 @@ const Login = () => {
         setLoading(true)
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log(userCredential._tokenResponse.idToken);
                 localStorage.setItem('token', userCredential._tokenResponse.idToken)
                 navigate('/')
             })

@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { addDoc, collection } from "firebase/firestore";
-import { db } from '../../firebase.init';
+import auth, { db } from '../../firebase.init';
 
 
 const AddTask = () => {
     const [taskName, setTaskName] = useState('')
+    const [desc, setDesc] = useState('')
+    const [dueDate, setDueDate] = useState('')
 
+    const user = auth.currentUser
+    console.log(user.uid);
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         try {
             const docRef = await addDoc(collection(db, "tasks"), {
-                name: taskName
+                user: user.uid,
+                name: taskName,
+                desc: desc,
+                dueDate: dueDate
             });
 
             console.log("Document written with ID: ", docRef.id);
@@ -40,6 +47,18 @@ const AddTask = () => {
                                             <input value={taskName}
                                                 onChange={e => setTaskName(e.target.value)} id="taskName" name="taskName" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Task Name" />
                                             <label class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Task Name</label>
+                                        </div>
+
+                                        <div class="relative">
+                                            <input value={desc}
+                                                onChange={e => setDesc(e.target.value)} id="desc" name="desc" type="text" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Task Description" />
+                                            <label class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Task Description</label>
+                                        </div>
+
+                                        <div class="relative">
+                                            <input value={dueDate}
+                                                onChange={e => setDueDate(e.target.value)} id="dueDate" name="dueDate" type="date" class="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600" placeholder="Due Date" />
+                                            <label class="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Due Date</label>
                                         </div>
 
                                         <div class="relative">
